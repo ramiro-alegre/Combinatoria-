@@ -1,0 +1,197 @@
+#include <iostream>
+using namespace std;
+int main(){
+int n,r,factorialn=1,factorialr=1,factorialad=1,factorialad2=1,cuenta1=1,cuenta2=1,cuenta3,cuenta4;
+int objeto1,objeto2,objeto3,cantobjetos,contador=1;
+char caso1,caso2,caso3;
+cout << "¿Importa el orden?(s/n)"<<endl;
+cin >> caso1;
+switch(caso1){ //PRIMER SWITCH PARA SABER SI IMPORTA EL ORDEN
+case 'n': cout << "¿Se repiten los elementos?(s/n)"<<endl; //COMBINATORIA, ESTA PREGUNTA ES PARA SABER SI HAY QUE USAR FORMULA CON O SIN REPETICION
+cin >> caso3; //SE INGRESA SI ES O NO CON REPETICION
+switch(caso3){ //SWITCH ADICIONAL PARA SACAR COMBINACION CON Y SIN REPETICION
+case 's': cout << "Ingrese el valor de N"<<endl;//COMBINACION CON REPETICION
+cout << "N=Cantidad de objetos/personas"<<endl;
+cin >> n; //ENTRA N
+if(n<=0){cout << "Debe ingresar un valor mayor a 0"; system("pause"); return 0;}
+cout << "Ingrese el valor de R"<<endl;
+cout << "R=Cantidad de objetos/personas que PARTICIPAN"<<endl;
+cin >> r;//ENTRA R
+if(r<=0){cout << "Debe ingresar un valor mayor a 0"; system("pause"); return 0;}
+
+factorialr=r;
+for(int i=1;i<r;i++){
+        factorialr=factorialr*i; //consigo el factorial de r
+}
+cuenta1=n+r-1;
+for(int o=1;o<=cuenta1;o++){
+    factorialad=factorialad*o; //consigo el factorial de n+r-1
+}
+cuenta2=n-1;
+for(int a=1;a<=cuenta2;a++){
+    factorialad2=factorialad2*a; //consigo el factorial de n-1
+}
+cuenta3=factorialr*factorialad2;
+cuenta4=factorialad/cuenta3; //resultado final de combinatoria con repetición
+
+cout << "CANTIDAD DE COMBINACIONES POSIBLES:  "<<cuenta4<<endl;
+cout << "Es una COMBINACION CON REPETICION"<<endl;
+cout << "Formula que debe usar"<<endl;
+cout << " (N+R-1)!"<<endl;
+cout << "---------"<<endl;
+cout << "R!.(N-1)!"<<endl;
+system("pause"); return 0;
+;break;
+case 'n': //COMBINACION SIN REPETICION
+cout << "Ingrese el valor de N"<<endl;
+cout << "N=Cantidad de objetos/personas"<<endl;
+cin >> n; //ENTRA N
+if(n<=0){cout << "Debe ingresar un valor mayor a 0"; system("pause"); return 0;}
+cout << "Ingrese el valor de R"<<endl;
+cout << "R=Cantidad de objetos/personas que PARTICIPAN"<<endl;
+cin >> r;//ENTRA R
+if(r<=0){cout << "Debe ingresar un valor mayor a 0"; system("pause"); return 0;}
+
+factorialr=r;
+for(int i=1;i<r;i++){
+        factorialr=factorialr*i; //consigo el factorial de r
+}
+factorialn=n;
+for(int a=1;a<n;a++){
+    factorialn=factorialn*a; //consigo el factorial de n
+}
+cuenta1=n-r;
+for(int o=1;o<=cuenta1;o++){
+    factorialad=factorialad*o; //consigo el factorial de n-r
+}
+cuenta2=factorialr*factorialad; //consigo el valor de abajo
+cuenta3=factorialn/cuenta2; //RESULTADO DE COMBINATORIA SIN REPETICION
+cout << "CANTIDAD DE COMBINACIONES POSIBLES:  "<<cuenta3<<endl;
+cout << "Es una COMBINACION SIN REPETICION"<<endl;
+cout << "Formula que debe usar"<<endl;
+cout << "    N!  "<<endl;
+cout << "---------"<<endl;
+cout << " R!.(N-R)!"<<endl;
+;break;
+default: cout << "Debe ingresar s/n en MINUSCULA"<<endl; return 0; system("pause");} //TERMINA EL SWITCH DE COMBINACION CON Y SIN REPETICION
+case 's': cout << "¿Participan todos los elementos?(s/n)"<<endl;
+cin >> caso2; //SE INGRESA S O N PARA SABER SI ES PERMUTACION O VARIACION
+switch(caso2){ //SWITCH PARA LO ANTES DICHO
+case 's': //CASO EN EL QUE ES PERMUTACION
+cout << "¿Se repiten todos los elementos?(s/n)"<<endl;
+cin >> caso3;
+switch(caso3){ //SWITCH PARA SABER SI ES CON REPETECION O NO
+case 's': //PERMUTACION CON REPETICION
+cout << "Ingrese el valor de N"<<endl;
+cout << "N=Cantidad de objetos/personas"<<endl;
+cin >> n; //ENTRA N
+if(n<=0){cout << "Debe ingresar un valor mayor a 0"; system("pause"); return 0;}
+
+factorialn=n;
+for(int a=1;a<n;a++){
+    factorialn=factorialn*a; //consigo el factorial de n
+}
+
+cout << "INGRESE 0(cero) EN EL CASO DE QUE NO QUIERA AGREGAR MAS OBJETOS"<<endl;
+cout << endl;
+cout << "Ingrese la cantidad de veces que se repite el "<<contador<<" objeto:  "<<endl;
+cin >> objeto1;
+if(objeto1<=0){cout << "Debe ingresar un numero mayor a 0"; system("pause");return 0;}
+cout <<endl;
+
+
+while(objeto1!=0){
+  contador++;
+  for(int i=1;i<=objeto1;i++){
+    cuenta1=cuenta1*i;
+  }
+  cuenta2=(cuenta2*cuenta1); //EN ESTA VARIABLE GUARDO EL VALOR DE LOS FACTORIALES MULTIPLICADOS
+  cuenta1=1;
+  cout << "Ingrese la cantidad de veces que se repite el "<<contador<<" objeto:  "<<endl;
+  cin >> objeto1;
+}
+cuenta3=factorialn/cuenta2; //RESULTADO DE PERMUTACION CON REPETICION
+cout << "CANTIDAD DE COMBINACIONES POSIBLES:  "<<cuenta3<<endl;
+cout << "Es una PERMUTACION CON REPETICION"<<endl;
+cout << "Formula que debe usar"<<endl;
+cout << "  N! "<<endl;
+cout << "------" <<endl;
+cout << "A!.B!...   A o B en este caso representan a objetos diferentes que se repiten"<<endl;
+
+;break;
+case 'n': //PERMUTACION SIN REPETICION
+cout << "Ingrese el valor de N"<<endl;
+cout << "N=Cantidad de objetos/personas"<<endl;
+cin >> n; //ENTRA N
+if(n<=0){cout << "Debe ingresar un valor mayor a 0"; system("pause"); return 0;}
+
+factorialn=n;
+for(int a=1;a<n;a++){
+    factorialn=factorialn*a; //consigo el factorial de n
+}
+cout << "CANTIDAD DE COMBINACIONES POSIBLES:  "<<factorialn<<endl;
+cout << "Es una PERMUTACION SIN REPETICION"<<endl;
+cout << "Formula que debe usar"<<endl;
+cout << "N!"<<endl;
+system("pause"); return 0;
+;break;
+default: cout << "Debe ingresar s/n en MINUSCULA"<<endl; return 0; system("pause");}//TERMINA EN SWITCH DE PERMUTACION CON Y SIN REPETICION
+case 'n': //CASO EN EL QUE ES UNA VARIACION
+cout << "¿Se repiten todos los elementos?(s/n)"<<endl;
+cin >> caso3;
+switch(caso3){ //SWITCH PARA SABER SI ES VARIACION CON REPETICION O NO
+case's': //VARIACION CON REPETICION
+cout << "Ingrese el valor de N"<<endl;
+cout << "N=Cantidad de objetos/personas"<<endl;
+cin >> n; //ENTRA N
+if(n<=0){cout << "Debe ingresar un valor mayor a 0"; system("pause"); return 0;}
+cout << "Ingrese el valor de R"<<endl;
+cout << "R=Cantidad de objetos/personas que PARTICIPAN"<<endl;
+cin >> r;//ENTRA R
+if(r<=0){cout << "Debe ingresar un valor mayor a 0"; system("pause"); return 0;}
+contador=0;
+while(contador!=r){
+    cuenta1*=n;
+    contador++;
+}
+cout << "CANTIDAD DE COMBINACIONES POSIBLES:  "<<cuenta1<<endl;
+cout << "Es una VARIACION CON REPETICION"<<endl;
+cout << "Formula que debe usar"<<endl;
+cout << "N elevado a la R"<<endl;
+
+;break;
+case 'n': //VARIACION SIN REPETICION
+cout << "Ingrese el valor de N"<<endl;
+cout << "N=Cantidad de objetos/personas"<<endl;
+cin >> n; //ENTRA N
+if(n<=0){cout << "Debe ingresar un valor mayor a 0"; system("pause"); return 0;}
+cout << "Ingrese el valor de R"<<endl;
+cout << "R=Cantidad de objetos/personas que PARTICIPAN"<<endl;
+cin >> r;//ENTRA R
+if(r<=0){cout << "Debe ingresar un valor mayor a 0"; system("pause"); return 0;}
+
+factorialn=n;
+for(int a=1;a<n;a++){
+    factorialn=factorialn*a; //consigo el factorial de n
+}
+cuenta1=n-r;
+for(int o=1;o<=cuenta1;o++){
+    factorialad=factorialad*o; //consigo el factorial de n-r
+}
+cuenta2=factorialn/factorialad; //CANTIDAD DE COMBINACIONES
+cout << "CANTIDAD DE COMBINACIONES POSIBLES:  "<<cuenta2<<endl;
+cout << "Es una VARIACION SIN REPETICION"<<endl;
+cout << "Formula que debe usar"<<endl;
+cout << "   N!  "<<endl;
+cout << "-------"<<endl;
+cout << " (N-R)!"<<endl;
+;break;}
+
+;break;
+default: cout << "Debe ingresar s/n en MINUSCULA"<<endl; return 0; system("pause");}
+
+;break;
+default: cout << "Debe ingresar s/n en MINUSCULA"<<endl;}
+
+system("pause");
+return 0;}
